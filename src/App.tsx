@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 import Button from "./components/button"
+import Home from "./components/home"
 
-type Anime = {
+export type AnimeType = {
   name: string
 }
 
-type Manga = {
+type MangaType = {
   name: string
 }
 
@@ -15,8 +16,8 @@ export default function App() {
   const [manga, setManga] = useState(false)
   const [home, setHome] = useState(true)
 
-  const [animeList, setAnimeList] = useState<Anime[]>([])
-  const [mangaList, setMangaList] = useState<Manga[]>([])
+  const [animeList, setAnimeList] = useState<AnimeType[]>([])
+  const [mangaList, setMangaList] = useState<MangaType[]>([])
 
   const getData = async () => {
     const res = await fetch("https://api.jikan.moe/v4/top/anime")
@@ -54,6 +55,8 @@ export default function App() {
         <Button name="Manga List" action={showMangaList} active={manga} />
         <Button name="Home" action={goHome} active={home} />
       </div>
+
+      {home && <Home animelist={animeList} />}
     </>
   )
 }
