@@ -5,9 +5,10 @@ import { AnimeType } from "../../App"
 
 interface Props {
   animelist: AnimeType[]
+  setAnimeList: React.Dispatch<React.SetStateAction<AnimeType[]>>
 }
 
-function TopAnime({ animelist }: Props) {
+function TopAnime({ animelist, setAnimeList }: Props) {
   const getAnime = async () => {
     const res = await fetch("https://api.jikan.moe/v4/top/anime")
     return res.json()
@@ -25,6 +26,7 @@ function TopAnime({ animelist }: Props) {
             name={anime.title}
             image={anime.images.jpg.image_url}
             animelist={animelist}
+            setAnimeList={setAnimeList}
           />
         ))}
       </div>

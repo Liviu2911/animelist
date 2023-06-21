@@ -4,12 +4,13 @@ import { AnimeType } from "../../App"
 
 interface Props {
   animelist: AnimeType[]
+  setAnimeList: React.Dispatch<React.SetStateAction<AnimeType[]>>
 }
 
-function Home({ animelist }: Props) {
+function Home({ animelist, setAnimeList }: Props) {
   return (
     <>
-      <TopAnime animelist={animelist} />
+      <TopAnime setAnimeList={setAnimeList} animelist={animelist} />
     </>
   )
 }
